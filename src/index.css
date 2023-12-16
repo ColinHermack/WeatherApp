@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html {
+  min-height: 100%;
+  background-image: url(media/RockyMountainSunny.JPG);
+  background-size: cover;
+}
+
+#background-image {
+  position: relative;
+  width: 100vw;
+}
+
+#page-content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65)
+}
