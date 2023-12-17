@@ -30,7 +30,7 @@ html {
   height: 100vh;
   background-color: rgba(0, 0, 30, 0.65);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
@@ -88,9 +88,9 @@ html {
   border-left: 0.5px solid white;
 }
 
-#weather-main div {
-  height: 100%;
+.weather-main-info {
   width: 50%;
+  height: 100%;
 }
 
 #weather-icon {
@@ -102,10 +102,88 @@ html {
 }
 
 #temperature {
+  width: 100%;
+  height: 60%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   font-weight: 100;
-  font-size: 5em;
+  font-size: 7em;
+}
+
+#background-label {
+  margin-top: 50px;
+}
+
+#temperature-shortForecast {
+  display: flex;
+  flex-direction: column;
+}
+
+#short-forecast {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+}
+
+#weather-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.weather-detail-info {
+  font-size: 1.7em;
+  width: 100%;
+  text-align: center;
+}
+
+.weather-detail-label {
+  color: rgb(180, 180, 180);
+}
+
+#future-weather {
+  width: 95%;
+  height: 45%;
+  margin: 2.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.future-forecast-container {
+  width: 13%;
+  height: 70%;
+  background-color: rgba(15, 15, 60, 0.5);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.future-forecast-label {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.future-forecast-temperature {
+  width: 100%;
+  text-align: center;
+  font-size: 1.7em;
+}
+
+.future-forecast-icon {
+  width: 100%;
+  text-align: center;
+  font-size: 3.5em;
+  margin-top: 20px;
 }

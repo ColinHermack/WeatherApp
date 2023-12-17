@@ -12,7 +12,8 @@ class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      weather: ""
+      weather: "",
+      backgroundLabel: "Rocky Mountain National Park"
     }
     this.getWeatherIcon = this.getWeatherIcon.bind(this);
   }
@@ -56,23 +57,25 @@ class WeatherApp extends React.Component {
 
   }
 
-  getWeatherIcon() {
-    if (this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("partially cloudy")) {
+  getWeatherIcon(data) {
+    if (data.shortForecast.toLowerCase().includes("partially cloudy")) {
       return (<FontAwesomeIcon icon={faCloudSun}/>);
-    } else if (this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("cloudy")){
+    } else if (data.shortForecast.toLowerCase().includes("cloudy")){
       return (<FontAwesomeIcon icon={faCloud}/>);
-    } else if (this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("sunny")) {
+    } else if (data.shortForecast.toLowerCase().includes("sunny")) {
+      this.setState({backgroundLabel: "Rocky Mountain National Park"})
       return (<FontAwesomeIcon icon={faSun}/>);
-    } else if (this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("light rain")
-      || this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("showers")) {
+    } else if (data.shortForecast.toLowerCase().includes("light rain")
+      || data.shortForecast.toLowerCase().includes("showers")
+      || data.shortForecast.toLowerCase().includes("drizzle")) {
       return (<FontAwesomeIcon icon={faCloudRain}/>);
-    } else if (this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("rain")) {
+    } else if (data.shortForecast.toLowerCase().includes("rain")) {
       return (<FontAwesomeIcon icon={faCloudShowersHeavy}/>);
-    } else if (this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("snow")) {
+    } else if (data.shortForecast.toLowerCase().includes("snow")) {
       return (<FontAwesomeIcon icon={faSnowflake}/>)
-    } else if (this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("thunderstorm")) {
+    } else if (data.shortForecast.toLowerCase().includes("thunderstorm")) {
       return (<FontAwesomeIcon icon={faCloudBolt}/>)
-    } else if (this.state.weather.properties.periods[0].shortForecast.toLowerCase().includes("clear")) {
+    } else if (data.shortForecast.toLowerCase().includes("clear")) {
       return (<FontAwesomeIcon icon={faMoon}/>)
     }
   }
@@ -85,7 +88,6 @@ class WeatherApp extends React.Component {
         </div>
       );
     } else {
-      console.log(this.state.weather);
       return(
         <div id='page-content'>
           <div id='main-content'>
@@ -93,14 +95,68 @@ class WeatherApp extends React.Component {
             <div id='date-info'>{weekdays[date.getDay()]}, {months[date.getMonth()]} {date.getDate()}</div>
             <div id='daily-weather'>
               <div id='weather-main' className='weather-info'>
-                <div id='weather-icon'>{this.getWeatherIcon()}</div>
-                <div id='temperature'>{this.state.weather.properties.periods[0].temperature}°</div>
+                <div id='weather-icon' className='weather-main-info'>{this.getWeatherIcon(this.state.weather.properties.periods[0])}</div>
+                <div id='temperature-shortForecast' className='weather-main-info'>
+                  <div id='temperature'>{this.state.weather.properties.periods[0].temperature}°</div>
+                  <div id='short-forecast'>{this.state.weather.properties.periods[0].shortForecast}</div>
+                </div>
               </div>
-              <div id='weather-details' className='weather-info'></div>
+              <div id='weather-details' className='weather-info'>
+                <div id='wind-speed' className='weather-detail-container'>
+                  <div className='weather-detail-info'>{this.state.weather.properties.periods[0].windSpeed}</div>
+                  <div className='weather-detail-label'>Wind Speed</div>
+                </div>
+                <div id='wind-direction' className='weather-detail-container'>
+                  <div className='weather-detail-info'>{this.state.weather.properties.periods[0].windDirection}</div>
+                  <div className='weather-detail-label'>Wind Direction</div>
+                </div>
+                <div id='humidity' className='weather-detail-container'>
+                  <div className='weather-detail-info'>{this.state.weather.properties.periods[0].relativeHumidity.value}%</div>
+                  <div className='weather-detail-label'>Humidity</div>
+                </div>
+              </div>
+            </div>
+            <div id='future-weather'>
+              <div className='future-forecast-container'>
+                <div className='future-forecast-label'>{this.state.weather.properties.periods[1].name}</div>
+                <div className='future-forecast-temperature'>{this.state.weather.properties.periods[1].temperature}</div>
+                <div className='future-forecast-icon'>{this.getWeatherIcon(this.state.weather.properties.periods[1])}</div>
+              </div>
+              <div className='future-forecast-container'>
+                <div className='future-forecast-label'>{this.state.weather.properties.periods[3].name}</div>
+                <div className='future-forecast-temperature'>{this.state.weather.properties.periods[3].temperature}</div>
+                <div className='future-forecast-icon'>{this.getWeatherIcon(this.state.weather.properties.periods[3])}</div>
+              </div>
+              <div className='future-forecast-container'>
+                <div className='future-forecast-label'>{this.state.weather.properties.periods[5].name}</div>
+                <div className='future-forecast-temperature'>{this.state.weather.properties.periods[5].temperature}</div>
+                <div className='future-forecast-icon'>{this.getWeatherIcon(this.state.weather.properties.periods[5])}</div>
+              </div>
+              <div className='future-forecast-container'>
+                <div className='future-forecast-label'>{this.state.weather.properties.periods[7].name}</div>
+                <div className='future-forecast-temperature'>{this.state.weather.properties.periods[7].temperature}</div>
+                <div className='future-forecast-icon'>{this.getWeatherIcon(this.state.weather.properties.periods[7])}</div>
+              </div>
+              <div className='future-forecast-container'>
+                <div className='future-forecast-label'>{this.state.weather.properties.periods[9].name}</div>
+                <div className='future-forecast-temperature'>{this.state.weather.properties.periods[9].temperature}</div>
+                <div className='future-forecast-icon'>{this.getWeatherIcon(this.state.weather.properties.periods[9])}</div>
+              </div>
+              <div className='future-forecast-container'>
+                <div className='future-forecast-label'>{this.state.weather.properties.periods[11].name}</div>
+                <div className='future-forecast-temperature'>{this.state.weather.properties.periods[11].temperature}</div>
+                <div className='future-forecast-icon'>{this.getWeatherIcon(this.state.weather.properties.periods[11])}</div>
+              </div>
+              <div className='future-forecast-container'>
+                <div className='future-forecast-label'>{this.state.weather.properties.periods[13].name}</div>
+                <div className='future-forecast-temperature'>{this.state.weather.properties.periods[13].temperature}</div>
+                <div className='future-forecast-icon'>{this.getWeatherIcon(this.state.weather.properties.periods[13])}</div>
+              </div>
             </div>
           </div>
+          <div id='background-label'>{this.state.backgroundLabel}</div>
         </div>
-      )
+      );
     }
   }
 }
