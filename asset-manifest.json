@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/weather/static/css/main.49dfffb9.css",
+    "main.js": "/weather/static/js/main.b0874cc4.js",
+    "static/media/RockyMountainSunny.JPG": "/weather/static/media/RockyMountainSunny.1b0ea56f3108d19919aa.JPG",
+    "index.html": "/weather/index.html",
+    "main.49dfffb9.css.map": "/weather/static/css/main.49dfffb9.css.map",
+    "main.b0874cc4.js.map": "/weather/static/js/main.b0874cc4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.49dfffb9.css",
+    "static/js/main.b0874cc4.js"
+  ]
+}
